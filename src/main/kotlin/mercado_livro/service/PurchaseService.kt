@@ -11,6 +11,7 @@ class PurchaseService(
     private val purchaseRepository: PurchaseRepository,
     private val applicationEventPublisher:ApplicationEventPublisher
 ) {
+
     fun create(purchaseModel: PurchaseModel){
         purchaseRepository.save(purchaseModel)
 

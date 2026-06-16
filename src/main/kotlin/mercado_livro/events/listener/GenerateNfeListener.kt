@@ -5,7 +5,7 @@ import mercado_livro.service.PurchaseService
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.UUID
 
 @Component
 class GenerateNfeListener(

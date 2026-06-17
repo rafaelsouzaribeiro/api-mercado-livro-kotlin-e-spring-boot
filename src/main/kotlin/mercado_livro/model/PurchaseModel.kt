@@ -3,6 +3,8 @@ package mercado_livro.model
 import jakarta.persistence.*
 import mercado_livro.enums.BookStatus
 import mercado_livro.enums.CustomerStatus
+import mercado_livro.enums.Errors
+import mercado_livro.expection.BadResquetExpection
 import org.hibernate.annotations.JdbcTypeCode
 import java.math.BigDecimal
 import java.sql.Types
@@ -30,4 +32,19 @@ data class PurchaseModel(
     val createdAt: LocalDateTime = LocalDateTime.now()
 
 
-)
+){
+    fun canBePurchased() {
+        val inactiveBookNames = books
+            .filter { it.status != BookStatus.ACTIVE }
+            .map { it.name }
+
+        if (inactiveBookNames.isNotEmpty()) {
+            val namesFormatted = inactiveBookNames.joinToString(", ")
+
+            throw BadResquetExpection(
+                message = Errors.ML_103.message.format(namesFormatted),
+                errorCode = Errors.ML_103.code
+            )
+        }
+    }
+}

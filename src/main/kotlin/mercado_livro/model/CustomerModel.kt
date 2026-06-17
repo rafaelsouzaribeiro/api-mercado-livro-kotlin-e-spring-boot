@@ -1,8 +1,8 @@
 package mercado_livro.model
 
 import jakarta.persistence.*
-import mercado_livro.enums.BookStatus
 import mercado_livro.enums.CustomerStatus
+import mercado_livro.enums.Profile
 import org.hibernate.annotations.JdbcTypeCode
 import java.sql.Types
 
@@ -20,4 +20,11 @@ data class CustomerModel(
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var status: CustomerStatus?=null,
+    @Column(length = 255, nullable = false)
+    var password:String,
+    @Column(name = "role",length = 255, nullable = false)
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Profile::class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "costumer_role", joinColumns = [JoinColumn(name="customer_id")])
+    var roles:Set<Profile> = setOf()
 )

@@ -12,4 +12,5 @@ data class PutCustomerRequest(
     @EmailAvailable
     var email:String,
     var status: CustomerStatus?=null,
+    var password:String
 )

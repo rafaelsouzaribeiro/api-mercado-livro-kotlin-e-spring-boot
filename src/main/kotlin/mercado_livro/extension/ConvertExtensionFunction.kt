@@ -74,6 +74,7 @@ fun PurchaseModel.toResponse():PurchaseSoldResponse{
         customer=this.customer,
         nfe=this.nfe,
         price=this.price,
+        books = this.books,
         createdAt=this.createdAt
     )
 }

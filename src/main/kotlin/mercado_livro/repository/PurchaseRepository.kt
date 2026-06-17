@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface PurchaseRepository:CrudRepository<PurchaseModel,String>
+interface PurchaseRepository:CrudRepository<PurchaseModel,String> {
+    fun findByCustomerId(customerId: String):List<PurchaseModel>
+}
 
 

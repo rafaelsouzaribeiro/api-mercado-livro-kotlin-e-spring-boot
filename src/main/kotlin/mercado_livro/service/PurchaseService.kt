@@ -22,4 +22,8 @@ class PurchaseService(
     fun update(purchaseModel: PurchaseModel) {
         purchaseRepository.save(purchaseModel)
     }
+
+    fun findPurchase(customerId:String): List<PurchaseModel> {
+        return purchaseRepository.findByCustomerId(customerId)
+    }
 }

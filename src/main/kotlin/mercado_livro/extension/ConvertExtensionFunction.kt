@@ -10,6 +10,8 @@ import mercado_livro.controller.request.PostBookRequest
 import mercado_livro.controller.request.PostCustomerRequest
 import mercado_livro.controller.request.PutBookRequest
 import mercado_livro.controller.request.PutCustomerRequest
+import mercado_livro.controller.response.PurchaseSoldResponse
+import mercado_livro.model.PurchaseModel
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
@@ -63,5 +65,15 @@ fun BookModel.toResponse(): BookResponse {
         status = this.status,
         price = this.price,
         customer = this.customer
+    )
+}
+
+fun PurchaseModel.toResponse():PurchaseSoldResponse{
+    return PurchaseSoldResponse(
+        id=this.id,
+        customer=this.customer,
+        nfe=this.nfe,
+        price=this.price,
+        createdAt=this.createdAt
     )
 }

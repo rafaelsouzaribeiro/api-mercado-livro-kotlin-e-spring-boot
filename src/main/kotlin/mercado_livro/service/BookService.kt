@@ -13,7 +13,7 @@ import java.util.UUID
 
 @Service
 class BookService(
-    val bookRepository: BookRepository
+   private val bookRepository: BookRepository
 ) {
     fun create(toBookModel: BookModel) {
         bookRepository.save(toBookModel)

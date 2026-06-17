@@ -14,7 +14,7 @@ import java.util.*
 @RestController
 @RequestMapping("customer")
 class CustomerController(
-    val customerService: CustomerService
+    private val customerService: CustomerService
 ){
 
     @GetMapping

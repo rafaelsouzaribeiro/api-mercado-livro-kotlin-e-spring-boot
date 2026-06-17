@@ -26,8 +26,8 @@ import java.util.UUID
 @RestController
 @RequestMapping("book")
 class BookControler(
-    val customerService: CustomerService,
-    val bookService: BookService
+    private val customerService: CustomerService,
+    private val bookService: BookService
 ) {
 
     @PostMapping

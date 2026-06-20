@@ -19,7 +19,6 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    // 1. DEIXE APENAS o repository no construtor da classe
     private val customerRepository: CustomerRepository
 ) {
     private val publicPostMatchers = arrayOf(
@@ -31,7 +30,6 @@ class SecurityConfig(
         return BCryptPasswordEncoder()
     }
 
-    // 2. O UserDetailsService deve entrar como parâmetro do método, NÃO da classe
     @Bean
     fun authenticationProvider(userDetailsService: UserDetailsService): DaoAuthenticationProvider {
         val authProvider = DaoAuthenticationProvider(userDetailsService)
@@ -39,13 +37,11 @@ class SecurityConfig(
         return authProvider
     }
 
-    // 3. ADICIONE ESSE BEAN para o Spring fabricar o AuthenticationManager que estava faltando
     @Bean
     fun authenticationManager(authenticationConfiguration: AuthenticationConfiguration): AuthenticationManager {
         return authenticationConfiguration.authenticationManager
     }
 
-    // 4. Injete o AuthenticationManager diretamente no método do filtro
     @Bean
     fun securityFilterChain(
         http: HttpSecurity,
@@ -61,7 +57,6 @@ class SecurityConfig(
             .sessionManagement { session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
-            // Usa o authManager que o Spring acabou de injetar no modo
             .addFilter(AuthenticationFilter(authManager, customerRepository))
 
         return http.build()

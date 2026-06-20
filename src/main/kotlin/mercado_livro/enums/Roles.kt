@@ -1,6 +1,6 @@
 package mercado_livro.enums
 
-enum class Profile(
+enum class Roles(
     val description:String
 ){
     ADMIN("ADMIN"),

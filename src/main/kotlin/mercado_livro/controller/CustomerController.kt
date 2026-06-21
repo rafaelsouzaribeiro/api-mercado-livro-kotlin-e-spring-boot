@@ -6,8 +6,10 @@ import mercado_livro.extension.toCustomerModel
 import mercado_livro.extension.toResponse
 import mercado_livro.controller.request.PostCustomerRequest
 import mercado_livro.controller.request.PutCustomerRequest
+import mercado_livro.security.UserCanOnlyAccessAdmin
 import mercado_livro.service.CustomerService
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -30,9 +32,10 @@ class CustomerController(
         customerService.createCustomer(customerPost.toCustomerModel())
     }
 
-    @GetMapping("/{ids}")
-    fun getCustomer(@PathVariable ids:UUID): CustomerResponse {
-       return customerService.getById(ids).toResponse()
+    @GetMapping("/{id}")
+    @UserCanOnlyAccessAdmin
+    fun getCustomer(@PathVariable id:UUID): CustomerResponse {
+       return customerService.getById(id).toResponse()
     }
 
     @PutMapping("{ids}")

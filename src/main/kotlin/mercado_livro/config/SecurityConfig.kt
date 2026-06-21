@@ -1,5 +1,6 @@
 package mercado_livro.config
 
+import mercado_livro.enums.Roles
 import mercado_livro.repository.CustomerRepository
 import mercado_livro.security.AuthenticationFilter
 import mercado_livro.security.AuthorizationFilter
@@ -30,6 +31,10 @@ class SecurityConfig(
         "/customer"
     )
 
+    private val adminMatchers = arrayOf(
+        "/admin/**"
+    )
+
     @Bean
     fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
         return BCryptPasswordEncoder()
@@ -57,6 +62,7 @@ class SecurityConfig(
             .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
                 auth.requestMatchers(HttpMethod.POST, *publicPostMatchers).permitAll()
+                auth.requestMatchers(*adminMatchers).hasAuthority(Roles.ADMIN.description)
                 auth.anyRequest().authenticated()
             }
             .sessionManagement { session ->

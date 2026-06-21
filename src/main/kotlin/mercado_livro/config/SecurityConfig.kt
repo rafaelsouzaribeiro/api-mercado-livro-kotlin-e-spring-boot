@@ -2,7 +2,9 @@ package mercado_livro.config
 
 import mercado_livro.repository.CustomerRepository
 import mercado_livro.security.AuthenticationFilter
+import mercado_livro.security.AuthorizationFilter
 import mercado_livro.security.JwtUtil
+import mercado_livro.service.UserDetailCustomerService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -21,7 +23,8 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableWebSecurity
 class SecurityConfig(
     private val customerRepository: CustomerRepository,
-    private val jwtUtil: JwtUtil
+    private val jwtUtil: JwtUtil,
+    private val userDetailsService: UserDetailCustomerService
 ) {
     private val publicPostMatchers = arrayOf(
         "/customer"
@@ -60,6 +63,7 @@ class SecurityConfig(
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
             .addFilter(AuthenticationFilter(authManager, customerRepository,jwtUtil))
+            .addFilter(AuthorizationFilter(authManager,userDetailsService,jwtUtil))
 
         return http.build()
     }

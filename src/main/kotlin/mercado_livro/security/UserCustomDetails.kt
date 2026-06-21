@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class UserCustomDetails (
     private val customerModel: CustomerModel
 ):UserDetails{
-    val id = customerModel.id
+    val id:String= customerModel.id!!
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> = customerModel.roles.map { SimpleGrantedAuthority(it.description) }.toMutableList()
     override fun getPassword(): String =customerModel.password
     override fun getUsername(): String = customerModel.id!!

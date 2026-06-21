@@ -33,6 +33,7 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	implementation(platform("org.apache.commons:commons-lang3:3.18.0"))
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
+	implementation("io.jsonwebtoken:jjwt:0.13.0")
 
 }
 

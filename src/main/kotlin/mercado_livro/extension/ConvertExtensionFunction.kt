@@ -1,15 +1,12 @@
 package mercado_livro.extension
 
+import mercado_livro.controller.request.*
 import mercado_livro.controller.response.BookResponse
 import mercado_livro.controller.response.CustomerResponse
 import mercado_livro.enums.BookStatus
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.model.BookModel
 import mercado_livro.model.CustomerModel
-import mercado_livro.controller.request.PostBookRequest
-import mercado_livro.controller.request.PostCustomerRequest
-import mercado_livro.controller.request.PutBookRequest
-import mercado_livro.controller.request.PutCustomerRequest
 import mercado_livro.controller.response.PurchaseSoldResponse
 import mercado_livro.model.PurchaseModel
 
@@ -19,6 +16,27 @@ fun PostCustomerRequest.toCustomerModel(): CustomerModel {
         email=this.email,
         status = CustomerStatus.ACTIVE,
         password = this.password
+    )
+}
+
+fun PostCustomerAdminRequest.toCustomerAdminModel():CustomerModel{
+    return CustomerModel(
+        name=this.name,
+        email=this.email,
+        status = CustomerStatus.ACTIVE,
+        password = this.password,
+        roles = this.roles
+    )
+}
+
+fun PutCustomerAdminRequest.toCustomerModel(customer: CustomerModel): CustomerModel {
+    return CustomerModel(
+        id=customer.id,
+        name=this.name,
+        email=this.email,
+        status =this.status ?: customer.status,
+        password = customer.password,
+        roles = this.roles
     )
 }
 

@@ -10,7 +10,7 @@ class UserCustomDetails (
     private val customerModel: CustomerModel
 ):UserDetails{
     val id:String= customerModel.id!!
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> = customerModel.roles.map { SimpleGrantedAuthority(it.description) }.toMutableList()
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> = customerModel.roles!!.map { SimpleGrantedAuthority(it.description) }.toMutableList()
     override fun getPassword(): String =customerModel.password
     override fun getUsername(): String = customerModel.id!!
     override fun isEnabled(): Boolean = customerModel.status==CustomerStatus.ACTIVE

@@ -32,6 +32,16 @@ class CustomerService(
         customerRepository.save(customerCopy)
     }
 
+    fun createAdminCustomer(customerModel: CustomerModel){
+        val customerCopy = customerModel.copy(
+            roles = customerModel.roles ?: setOf(Roles.CUSTOMER),
+            password = bcrypt.encode(customerModel.password)
+        )
+        customerRepository.save(customerCopy)
+    }
+
+
+
     fun getById(ids:UUID): CustomerModel {
         return customerRepository.findById(ids.toString()).orElseThrow{
             NotFoundException(
@@ -47,6 +57,17 @@ class CustomerService(
         customerRepository.save(customerModel)
     }
 
+    fun updateAdminCustomer(customerModel: CustomerModel){
+        if(!customerRepository.existsById(customerModel.id!!)){
+            throw Exception()
+        }
+        val customerCopy = customerModel.copy(
+            roles = customerModel.roles ?: setOf(Roles.CUSTOMER),
+            password = bcrypt.encode(customerModel.password)
+        )
+        customerRepository.save(customerCopy)
+    }
+
     fun deleteCustomer(id:UUID){
         val customers = getById(id)
         bookService.deleteByCustomer(customers)
@@ -58,6 +79,10 @@ class CustomerService(
 
     fun emailAvailable(value:String): Boolean {
         return !customerRepository.existsByEmail(value)
+    }
+
+    fun findByEMail(email: String): CustomerModel? {
+        return customerRepository.findByEmail(email)
     }
 
 }

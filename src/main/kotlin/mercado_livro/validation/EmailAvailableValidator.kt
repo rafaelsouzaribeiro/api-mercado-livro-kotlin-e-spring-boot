@@ -12,6 +12,14 @@ class EmailAvailableValidator(
             return false
         }
 
+        val customer = customerService.findByEMail(value)
+
+        customer?.let {
+            if (customer.email==value){
+                return true
+            }
+        }
+
         return customerService.emailAvailable(value)
     }
 

@@ -4,5 +4,5 @@ import org.springframework.security.access.prepost.PreAuthorize
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-@PreAuthorize("hasRole('ROLE_ADMIN')")
-annotation class UserCanOnlyAccessAdmin
+@PreAuthorize("hasRole('ROLE_ADMIN') || #id.toString() == authentication.principal.id.toString()")
+annotation class UserCanOnlyAccessOwnResource

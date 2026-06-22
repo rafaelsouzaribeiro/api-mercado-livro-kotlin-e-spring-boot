@@ -93,9 +93,10 @@ class SecurityConfig(
     @Bean
     fun corsFilter(): CorsFilter {
         val configuration = CorsConfiguration()
-        configuration.allowedOrigins = listOf("*")
+        configuration.allowCredentials = true
         configuration.allowedMethods = listOf("*")
         configuration.allowedHeaders = listOf("*")
+        configuration.allowedOriginPatterns = listOf("*")
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
 

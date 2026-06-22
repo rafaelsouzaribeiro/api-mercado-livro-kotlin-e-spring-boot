@@ -6,6 +6,8 @@ import mercado_livro.extension.toBookModel
 import mercado_livro.extension.toResponse
 import mercado_livro.controller.request.PostBookRequest
 import mercado_livro.controller.request.PutBookRequest
+import mercado_livro.controller.response.PageResponse
+import mercado_livro.extension.toPageResponse
 import mercado_livro.service.BookService
 import mercado_livro.service.CustomerService
 import org.springframework.data.domain.Page
@@ -38,8 +40,8 @@ class BookControler(
     }
 
     @GetMapping
-    fun findAll(@PageableDefault(page = 0, size = 10) pageable: Pageable):Page<BookResponse>{
-        return bookService.findAll(pageable).map { it.toResponse() }
+    fun findAll(@PageableDefault(page = 0, size = 10) pageable: Pageable): PageResponse<BookResponse> {
+        return bookService.findAll(pageable).map { it.toResponse() }.toPageResponse()
     }
 
     @GetMapping("/active")

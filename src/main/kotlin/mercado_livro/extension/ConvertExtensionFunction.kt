@@ -3,12 +3,14 @@ package mercado_livro.extension
 import mercado_livro.controller.request.*
 import mercado_livro.controller.response.BookResponse
 import mercado_livro.controller.response.CustomerResponse
+import mercado_livro.controller.response.PageResponse
 import mercado_livro.enums.BookStatus
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.model.BookModel
 import mercado_livro.model.CustomerModel
 import mercado_livro.controller.response.PurchaseSoldResponse
 import mercado_livro.model.PurchaseModel
+import org.springframework.data.domain.Page
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
@@ -83,8 +85,7 @@ fun BookModel.toResponse(): BookResponse {
         id=this.id,
         name=this.name,
         status = this.status,
-        price = this.price,
-        customer = this.customer
+        price = this.price
     )
 }
 
@@ -96,5 +97,14 @@ fun PurchaseModel.toResponse():PurchaseSoldResponse{
         price=this.price,
         books = this.books,
         createdAt=this.createdAt
+    )
+}
+
+fun <T> Page<T>.toPageResponse(): PageResponse<T> {
+    return PageResponse(
+        items = this.content,
+        currentPage = this.number,
+        totalPages = this.totalPages,
+        totalItems = this.totalElements
     )
 }

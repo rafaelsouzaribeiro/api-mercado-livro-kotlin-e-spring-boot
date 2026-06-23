@@ -82,3 +82,16 @@ POST /customer
 "password": "123456"
 }
 ```
+
+📌 Endpoint: Login
+
+➤ URL
+
+POST /login
+
+```json
+{
+"email": "joao@email.com",
+"password": "123456"
+}
+```

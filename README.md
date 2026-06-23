@@ -142,3 +142,15 @@ Execute a atualização na tabela `customer_role`, substituindo o valor `CUSTOME
 |------------|---------------------------------|----------------------------------------|
 | `POST`     | `/purchase`                     | Realizar uma compra                    |
 | `GET`      | `/purchase/{customer_id}`       | Listar compras de um cliente           |
+
+## 📖 Documentação da API (Swagger)
+
+A documentação da API está disponível através do Swagger.
+
+> **Importante:** o Swagger só estará disponível quando a aplicação for executada com o profile `dev`.
+
+Acesse a URL abaixo no navegador:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```

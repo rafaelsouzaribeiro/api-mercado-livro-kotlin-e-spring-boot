@@ -97,8 +97,8 @@ class ControllerAdvice {
     fun handleHttpMessageNotReadableException(ex:DataIntegrityViolationException,request:WebRequest):ResponseEntity<ErrorResponse>{
         val erro = ErrorResponse(
             httpCode = HttpStatus.BAD_REQUEST.value(),
-            message = ex.message?:Errors.MLOOO.message,
-            internalCode = Errors.MLOOO.code,
+            message = Errors.ML002.message,
+            internalCode = Errors.ML002.code,
             erros = null
         )
 

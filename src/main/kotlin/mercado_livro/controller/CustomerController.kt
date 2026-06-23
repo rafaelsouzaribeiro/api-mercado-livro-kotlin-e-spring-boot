@@ -59,7 +59,7 @@ class CustomerController(
 
     @PutMapping("/admin/{ids}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @UserCanOnlyAccessOwnResource
+    @UserCanOnlyAccessAdmin
     fun updateAdminCustomer(@PathVariable ids:UUID,@RequestBody @Valid customerPut: PutCustomerAdminRequest){
         val customer = customerService.getById(ids)
         customerService.updateAdminCustomer(customerPut.toCustomerModel(customer))

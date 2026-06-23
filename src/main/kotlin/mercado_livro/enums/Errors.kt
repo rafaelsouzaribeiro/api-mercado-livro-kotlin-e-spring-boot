@@ -1,7 +1,7 @@
 package mercado_livro.enums
 
 enum class Errors(val code:String,val message:String) {
-    ML_OOO("ML000","Unauthorized"),
+    MLOOO("ML000","Unauthorized"),
     ML001("ML001","Invalid request"),
     ML002("ML002","Email already exists"),
     ML101("ML_101","Book {%s} not exists"),

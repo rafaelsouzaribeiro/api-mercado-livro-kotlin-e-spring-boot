@@ -26,9 +26,6 @@ class CustomerService(
     }
 
     fun createCustomer(customerModel: CustomerModel){
-        if (customerRepository.existsByEmail(customerModel.email)) {
-            throw BadResquetExpection(Errors.ML002.message ,Errors.ML002.code)
-        }
 
         val customerCopy = customerModel.copy(
             roles = setOf(Roles.CUSTOMER),

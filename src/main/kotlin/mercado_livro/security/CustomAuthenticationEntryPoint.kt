@@ -19,7 +19,7 @@ class CustomAuthenticationEntryPoint: AuthenticationEntryPoint{
     ) {
         response.contentType="application/json"
         response.status=HttpServletResponse.SC_UNAUTHORIZED
-        var errorResponse=ErrorResponse(HttpStatus.UNAUTHORIZED.value(),Errors.ML_OOO.message,Errors.ML_OOO.code,null)
+        var errorResponse=ErrorResponse(HttpStatus.UNAUTHORIZED.value(),Errors.MLOOO.message,Errors.MLOOO.code,null)
         response.outputStream.print(jacksonObjectMapper().writeValueAsString(errorResponse))
     }
 

@@ -3,6 +3,7 @@ package mercado_livro.expection
 import mercado_livro.controller.response.ErrorResponse
 import mercado_livro.controller.response.FieldErrorResponse
 import mercado_livro.enums.Errors
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -31,8 +32,8 @@ class ControllerAdvice {
     fun handlerAccessDeniedException(ex:AccessDeniedException,request:WebRequest):ResponseEntity<ErrorResponse>{
         val erro = ErrorResponse(
             httpCode = HttpStatus.FORBIDDEN.value(),
-            message =Errors.ML_OOO.message,
-            internalCode = Errors.ML_OOO.code,
+            message =Errors.MLOOO.message,
+            internalCode = Errors.MLOOO.code,
             erros = null
         )
 
@@ -86,6 +87,18 @@ class ControllerAdvice {
             httpCode = HttpStatus.BAD_REQUEST.value(),
             message = ex.message?:Errors.ML401.message,
             internalCode = Errors.ML401.code,
+            erros = null
+        )
+
+        return ResponseEntity(erro, HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException::class)
+    fun handleHttpMessageNotReadableException(ex:DataIntegrityViolationException,request:WebRequest):ResponseEntity<ErrorResponse>{
+        val erro = ErrorResponse(
+            httpCode = HttpStatus.BAD_REQUEST.value(),
+            message = ex.message?:Errors.MLOOO.message,
+            internalCode = Errors.MLOOO.code,
             erros = null
         )
 

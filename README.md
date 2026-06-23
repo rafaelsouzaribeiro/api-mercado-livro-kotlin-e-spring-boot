@@ -102,3 +102,36 @@ Pegue do header do login o token e acesse as outras rotas.
 
 
 Para acessar conteúdo ADMIN mude o usuário CUSTOMER no banco para ADMIN
+
+## 📌 API Endpoints
+
+### Livros (Books)
+
+| Método     | Endpoint                        | Descrição                              |
+|------------|---------------------------------|----------------------------------------|
+| `GET`      | `/book`                         | Listar todos os livros                 |
+| `GET`      | `/book/active`                  | Listar livros ativos                   |
+| `GET`      | `/book?page=0&size=13`          | Listar livros com paginação            |
+| `GET`      | `/book/{id}`                    | Buscar livro por ID                    |
+| `POST`     | `/book`                         | Cadastrar novo livro                   |
+| `PUT`      | `/book/{id}`                    | Atualizar livro                        |
+| `DELETE`   | `/book/{id}`                    | Remover livro                          |
+
+### Clientes (Customers)
+
+| Método     | Endpoint                        | Descrição                              |
+|------------|---------------------------------|----------------------------------------|
+| `GET`      | `/customer`                     | Listar todos os clientes               |
+| `GET`      | `/customer/{id}`                | Buscar cliente por ID                  |
+| `POST`     | `/customer`                     | Cadastrar novo cliente                 |
+| `POST`     | `/customer/admin`               | Cadastrar cliente como Admin           |
+| `PUT`      | `/customer/{id}`                | Atualizar cliente                      |
+| `PUT`      | `/customer/admin/{id}`          | Atualizar cliente como Admin           |
+| `DELETE`   | `/customer/{id}`                | Remover cliente                        |
+
+### Compras (Purchases)
+
+| Método     | Endpoint                        | Descrição                              |
+|------------|---------------------------------|----------------------------------------|
+| `POST`     | `/purchase`                     | Realizar uma compra                    |
+| `GET`      | `/purchase/{customer_id}`       | Listar compras de um cliente           |

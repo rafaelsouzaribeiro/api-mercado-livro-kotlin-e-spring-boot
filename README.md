@@ -44,6 +44,9 @@ jwt:
   secret: 7c34debd-b72f-4941-96cb-89aaeafc029d
   expiration: 3600000
 ```
+Para alterar o ambiente de produção(prod) para desenvolvimento(dev)
+
+Basta mudar o profiles.active(dev ou prod)
 
 Crie em:
 

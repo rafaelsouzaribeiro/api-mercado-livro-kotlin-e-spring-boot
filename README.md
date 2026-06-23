@@ -98,7 +98,7 @@ POST /login
 
 Pegue do header do login o token e acesse as outras rotas.
 
-[![Token](http://rafael-developer.com/wp-content/uploads/2026/06/Captura-de-Tela-2026-06-23-as-05.49.32.png)]
+![Token](http://rafael-developer.com/wp-content/uploads/2026/06/Captura-de-Tela-2026-06-23-as-05.49.32.png)
 
 
 Para acessar conteúdo ADMIN mude o usuário CUSTOMER no banco para ADMIN

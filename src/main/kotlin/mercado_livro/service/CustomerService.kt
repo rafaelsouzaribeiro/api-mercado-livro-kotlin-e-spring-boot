@@ -3,6 +3,7 @@ package mercado_livro.service
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.enums.Errors
 import mercado_livro.enums.Roles
+import mercado_livro.expection.BadResquetExpection
 import mercado_livro.expection.NotFoundException
 import mercado_livro.model.CustomerModel
 import mercado_livro.repository.CustomerRepository
@@ -25,6 +26,10 @@ class CustomerService(
     }
 
     fun createCustomer(customerModel: CustomerModel){
+        if (customerRepository.existsByEmail(customerModel.email)) {
+            throw BadResquetExpection(Errors.ML002.message ,Errors.ML002.code)
+        }
+
         val customerCopy = customerModel.copy(
             roles = setOf(Roles.CUSTOMER),
             password = bcrypt.encode(customerModel.password)

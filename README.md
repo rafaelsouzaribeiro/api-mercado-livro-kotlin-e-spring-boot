@@ -68,3 +68,17 @@ spring:
     username: root
     password: root
 ```
+
+📌 Endpoint: Criar Customer
+
+➤ URL
+
+POST /customer
+
+```json
+{
+"name": "João Silva",
+"email": "joao@email.com",
+"password": "123456"
+}
+```

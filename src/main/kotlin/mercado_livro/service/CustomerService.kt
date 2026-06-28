@@ -3,7 +3,6 @@ package mercado_livro.service
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.enums.Errors
 import mercado_livro.enums.Roles
-import mercado_livro.expection.BadResquetExpection
 import mercado_livro.expection.NotFoundException
 import mercado_livro.model.CustomerModel
 import mercado_livro.repository.CustomerRepository
@@ -54,7 +53,9 @@ class CustomerService(
 
     fun updateCustomer(customerModel: CustomerModel){
         if(!customerRepository.existsById(customerModel.id!!)){
-            throw Exception()
+            throw NotFoundException(
+                Errors.ML201.message.format(customerModel.id),
+                Errors.ML201.code)
         }
         customerRepository.save(customerModel)
     }

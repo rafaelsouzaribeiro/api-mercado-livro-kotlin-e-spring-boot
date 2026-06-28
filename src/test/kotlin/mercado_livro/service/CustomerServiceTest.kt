@@ -10,9 +10,8 @@ import io.mockk.runs
 import io.mockk.verify
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.enums.Errors
-import mercado_livro.enums.Roles
 import mercado_livro.expection.NotFoundException
-import mercado_livro.model.CustomerModel
+import mercado_livro.helper.buildCustomers
 import mercado_livro.repository.CustomerRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -37,21 +36,6 @@ class CustomerServiceTest {
     @MockK
     private lateinit var bcrypt: BCryptPasswordEncoder
 
-    private fun buildCustomers(
-        id:String? = null,
-        name:String = "Customer name",
-        email:String="${UUID.randomUUID()}@email.com",
-        password:String="password"
-    ):CustomerModel{
-        return CustomerModel(
-            id=id,
-            name=name,
-            email=email,
-            status = CustomerStatus.ACTIVE,
-            password=password,
-            roles = setOf(Roles.CUSTOMER)
-        )
-    }
 
     @Test
     fun `should return all customers`() {

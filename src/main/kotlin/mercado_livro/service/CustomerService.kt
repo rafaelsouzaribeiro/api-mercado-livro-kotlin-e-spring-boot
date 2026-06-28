@@ -48,7 +48,7 @@ class CustomerService(
         return customerRepository.findById(ids.toString()).orElseThrow{
             NotFoundException(
                 Errors.ML201.message.format(ids),
-                Errors.ML101.code)
+                Errors.ML201.code)
         }
     }
 

@@ -191,6 +191,7 @@ class CustomerServiceTest {
         verify(exactly = 1) { customerRepository.existsByEmail(email) }
     }
 
+    @Test
     fun `should return false when email available`(){
         val email = "${UUID.randomUUID()}@email.com"
 

@@ -12,7 +12,8 @@ import java.util.*
     id:String? = null,
     name:String = "Customer name",
     email:String="${UUID.randomUUID()}@email.com",
-    password:String="password"
+    password:String="password",
+    roles:Set<Roles>?=null
 ): CustomerModel {
     return CustomerModel(
         id=id,
@@ -20,7 +21,7 @@ import java.util.*
         email=email,
         status = CustomerStatus.ACTIVE,
         password=password,
-        roles = setOf(Roles.CUSTOMER)
+        roles = roles ?: setOf(Roles.CUSTOMER)
     )
 }
 

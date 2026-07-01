@@ -174,7 +174,7 @@ class CustomerControllerTest {
 
     @Test
     @WithMockUser(roles = ["ADMIN"])
-    fun `should get user by id when user is admin`() {
+    fun `should throw an error when user is not found by id`() {
         val id = UUID.randomUUID().toString()
         val user1 = buildCustomers(
             name = "Gustavo",

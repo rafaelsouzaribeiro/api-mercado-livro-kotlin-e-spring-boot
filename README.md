@@ -72,6 +72,26 @@ spring:
     password: root
 ```
 
+Crie em:
+
+src/test/resources/application-test.yml
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mercadolivrotest?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+  jackson:
+    default-property-inclusion: non_null
+jwt:
+  secret: 7c34debd-b72f-4941-96cb-89aaeafc029d
+  expiration: 3600000
+```
+
 📌 Endpoint: Criar Customer
 
 ➤ URL

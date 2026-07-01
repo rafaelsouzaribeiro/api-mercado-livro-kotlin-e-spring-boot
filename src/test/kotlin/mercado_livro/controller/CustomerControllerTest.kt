@@ -5,7 +5,6 @@ import mercado_livro.controller.request.PostCustomerRequest
 import mercado_livro.controller.request.PutCustomerRequest
 import mercado_livro.enums.CustomerStatus
 import mercado_livro.enums.Roles
-import mercado_livro.helper.Token
 import mercado_livro.helper.buildCustomers
 import mercado_livro.repository.CustomerRepository
 import mercado_livro.security.UserCustomDetails
@@ -41,9 +40,6 @@ class CustomerControllerTest {
 
     @Autowired
     private lateinit var objectMapper: ObjectMapper
-
-    @Autowired
-    private lateinit var tokenHelper: Token
 
     @BeforeEach
     fun seTup() = customerRepository.deleteAll()
